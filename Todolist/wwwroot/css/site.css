@@ -18,35 +18,12 @@ body {
 .todo-nav {
     margin-top: 10px
 }
-/*
-.todo-list {
-    margin: 10px 0
-}
 
-.todo-list .todo-item {
-    padding: 15px;
-    margin: 5px 0;
-    border-radius: 0;
-    background: #f7f7f7
-}
-
-.todo-list.only-active .todo-item.complete {
+.no-display {
     display: none
 }
 
-.todo-list.only-active .todo-item:not(.complete) {
-    display: block
-}
-
-.todo-list.only-complete .todo-item:not(.complete) {
-    display: none
-}
-
-.todo-list.only-complete .todo-item.complete {
-    display: block
-}
-*/
-.todo-list .todo-item.complete span {
+.complete {
     text-decoration: line-through
 }
 

@@ -12,6 +12,7 @@
     <None Remove="Microsoft.EntityFrameworkCore.SqlServer" />
     <None Remove="Swashbuckle.AspNetCore" />
     <None Remove="NuGet.PackageManagement" />
+    <None Remove="JavaScriptEngineSwitcher.Core" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -27,6 +28,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.7" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
     <PackageReference Include="NuGet.PackageManagement" Version="6.2.1" />
+    <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.19.0" />
   </ItemGroup>
 
 </Project>

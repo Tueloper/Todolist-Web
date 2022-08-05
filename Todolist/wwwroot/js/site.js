@@ -3,71 +3,54 @@
 
 // Write your JavaScript code.
 
-$(document).ready(function () {
+const checkers = document.querySelectorAll(".checker input[type='checkbox']");
+const allTaskButtons = document.querySelector(".todo-nav .all-task");
+const activeTaskButtons = document.querySelector(".todo-nav .active-task");
+const completedButtons = document.querySelector(".todo-nav .completed-task");
+const group = document.querySelectorAll(".group");
 
-    "use strict";
+// loop through all checkers and add event listener
+for (let i = 0; i < checkers.length; i++) {
+    checkers[i].addEventListener("click", lineThrough);
+}
 
-    var todo = function () {
-        $('.todo-list .todo-item input').click(function () {
-            if ($(this).is(':checked')) {
-                $(this).parent().parent().parent().toggleClass('complete');
-            } else {
-                $(this).parent().parent().parent().toggleClass('complete');
-            }
-        });
+// set line-through on checker
+function lineThrough(e) {
+  if (e.target.checked) {
+    e.target.parentElement.parentElement.parentElement.parentElement.classList.add("complete");
+  } else {
+    e.target.parentElement.parentElement.parentElement.parentElement.classList.remove("complete");
+  }
+};
 
-        $('.todo-nav .all-task').click(function () {
-            $('.todo-list').removeClass('only-active');
-            $('.todo-list').removeClass('only-complete');
-            $('.todo-nav li.active').removeClass('active');
-            $(this).addClass('active');
-        });
 
-        $('.todo-nav .active-task').click(function () {
-            $('.todo-list').removeClass('only-complete');
-            $('.todo-list').addClass('only-active');
-            $('.todo-nav li.active').removeClass('active');
-            $(this).addClass('active');
-        });
+// add event listener to all task button
+allTaskButtons.addEventListener("click", showAllTask);
+activeTaskButtons.addEventListener("click", showActiveTask);
+completedButtons.addEventListener("click", showCompletedTask);
 
-        $('.todo-nav .completed-task').click(function () {
-            $('.todo-list').removeClass('only-active');
-            $('.todo-list').addClass('only-complete');
-            $('.todo-nav li.active').removeClass('active');
-            $(this).addClass('active');
-        });
-
-        $('#uniform-all-complete input').click(function () {
-            if ($(this).is(':checked')) {
-                $('.todo-item .checker span:not(.checked) input').click();
-            } else {
-                $('.todo-item .checker span.checked input').click();
-            }
-        });
-
-        $('.remove-todo-item').click(function () {
-            $(this).parent().remove();
-        });
-    };
-
-    todo();
-
-    $(".add-task").keypress(function (e) {
-        if ((e.which == 13) && (!$(this).val().length == 0)) {
-            $('<div class="todo-item"><div class="checker"><span class=""><input type="checkbox"></span></div> <span>' + $(this).val() + '</span> <a href="javascript:void(0);" class="float-right remove-todo-item"><i class="icon-close"></i></a></div>').insertAfter('.todo-list .todo-item:last-child');
-            $(this).val('');
-        } else if (e.which == 13) {
-            alert('Please enter new task');
+function showCompletedTask() {
+    for (let i = 0; i < group.length; i++) {
+        if (!group[i].classList.contains("complete")) {
+            group[i].classList.add("d-none");
+        } else {
+            group[i].classList.remove("d-none");
         }
-        $(document).on('.todo-list .todo-item.added input').click(function () {
-            if ($(this).is(':checked')) {
-                $(this).parent().parent().parent().toggleClass('complete');
-            } else {
-                $(this).parent().parent().parent().toggleClass('complete');
-            }
-        });
-        $('.todo-list .todo-item.added .remove-todo-item').click(function () {
-            $(this).parent().remove();
-        });
-    });
-});
+    }
+}
+
+function showActiveTask() {
+    for (let i = 0; i < group.length; i++) {
+        if (group[i].classList.contains("complete")) {
+            group[i].classList.add("d-none");
+        } else {
+            group[i].classList.remove("d-none");
+        }
+    }
+}
+
+function showAllTask() {
+    for (let i = 0; i < group.length; i++) {
+        group[i].classList.remove("d-none");
+    }
+}
